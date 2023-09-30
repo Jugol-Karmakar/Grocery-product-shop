@@ -203,6 +203,7 @@ const Product = () => {
               borderRadius: 1200,
               height: "44px",
               overflow: "hidden",
+              border: "2px solid transparent",
               width: "50%",
               "&:focus-within": {
                 border: "2px solid",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -13,12 +13,23 @@ import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import Image from "next/image";
 import { NumericFormat } from "react-number-format";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const ProductModal = ({ product, open, handleClose }) => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count - 1 >= 0);
+  };
+  const decrement = () => {
+    setCount(count + 1);
+  };
+
   return (
     <div>
       <Dialog
@@ -119,6 +130,7 @@ const ProductModal = ({ product, open, handleClose }) => {
                   vitae luctus metus libero eu augue. Morbi purus liberpuro ate
                   vol faucibus adipiscing.
                 </Typography>
+
                 <Button
                   variant="contained"
                   sx={{
@@ -134,6 +146,31 @@ const ProductModal = ({ product, open, handleClose }) => {
                 >
                   Add To Cart
                 </Button>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button
+                    onClick={increment}
+                    variant="outlined"
+                    size="small"
+                    sx={{ padding: "8px", minWidth: "unset" }}
+                  >
+                    <RemoveIcon />
+                  </Button>
+                  <Typography>{count}</Typography>
+                  <Button
+                    onClick={decrement}
+                    variant="outlined"
+                    size="small"
+                    sx={{ padding: "8px", minWidth: "unset" }}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Box>
               </Box>
             </Grid>
           </Container>
