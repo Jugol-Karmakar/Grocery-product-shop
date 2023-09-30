@@ -2,33 +2,30 @@ import { Box, Card, CardContent, Rating, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { NumericFormat } from "react-number-format";
+import ProductButton from "./product-button";
+import ProductModal from "../product-modal";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
-      <Card sx={{ borderRadius: "10px", position: "relative" }}>
-        <Link href={`/product-${product._id}`}>
-          <Box sx={{ display: "flex", justifyContent: "center", height: 283 }}>
-            <Image src={product.images} alt="product-image" width={290} />
-          </Box>
-        </Link>
-        <Typography
-          variant="h5"
-          sx={{
-            position: "absolute",
-            top: "10px",
-            left: "10px",
-            fontSize: "10px",
-            paddingX: "10px",
-            paddingY: "4px",
-            backgroundColor: "#4E97FD",
-            color: "white",
-            borderRadius: "16px",
-            fontWeight: 600,
-          }}
-        >
-          25% off
-        </Typography>
+      <Card
+        sx={{ borderRadius: "10px", position: "relative" }}
+        onClick={handleClickOpen}
+      >
+        <Box sx={{ display: "flex", justifyContent: "center", height: 283 }}>
+          <Image src={product.images} alt="product-image" width={290} />
+        </Box>
+
         <CardContent
           sx={{
             display: "flex",
@@ -110,6 +107,13 @@ const ProductCard = () => {
           <ProductButton />
         </CardContent>
       </Card>
+      <ProductModal
+        handleClickOpen={handleClickOpen}
+        handleClose={handleClose}
+        open={open}
+        setOpen={setOpen}
+        product={product}
+      />
     </>
   );
 };
