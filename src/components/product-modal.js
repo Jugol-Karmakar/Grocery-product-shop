@@ -52,7 +52,12 @@ const ProductModal = ({ product, open, handleClose }) => {
           >
             <Grid item md={6}>
               <Box>
-                <Image src={product.images} alt="product-image" width={400} />
+                <Image
+                  src={product.images}
+                  alt="product-image"
+                  width={400}
+                  height={400}
+                />
               </Box>
             </Grid>
             <Grid item md={6} sx={{ position: "relative" }}>

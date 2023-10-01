@@ -7,175 +7,20 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./product-card";
 import heroImage1 from "../../images/hero-image1.avif";
 import { Search } from "@mui/icons-material";
 
 const Product = () => {
-  const PRODUCTS = [
-    {
-      _id: 1,
-      name: "Iphone 13 Pro Max",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Apple",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 2,
-      name: "Iphone 13 Pro Max",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Apple",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 3,
-      name: "Iphone 13 Pro Max",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Apple",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 4,
-      name: "Wireless Bluetooth Headphone",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Xiaomi",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 5,
-      name: "Earbirds Headphone",
-      description: "string",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Xiaomi",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 6,
-      name: "Wireless Headphone",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Xiaomi",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 7,
-      name: "Nokia Andriod",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Nokia",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 8,
-      name: "Nokia Andriod",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Nokia",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 9,
-      name: "Nokia Andriod",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Nokia",
-      rating: 4.5,
-      category: "Electronic",
-    },
-    {
-      _id: 10,
-      name: "Classic Rolex Watch",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Rolex",
-      rating: 4.5,
-      category: "Fashion",
-    },
-    {
-      _id: 11,
-      name: "Classic Rolex Watch",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Rolex",
-      rating: 4.5,
-      category: "Fashion",
-    },
-    {
-      _id: 12,
-      name: "Classic Rolex Watch",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Rolex",
-      rating: 4.5,
-      category: "Fashion",
-    },
-    {
-      _id: 13,
-      name: "Black Sunglass",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "",
-      rating: 4.5,
-      category: "Fashion",
-    },
-    {
-      _id: 14,
-      name: "Matt Sunglass",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "",
-      rating: 4.5,
-      category: "Fashion",
-    },
-    {
-      _id: 15,
-      name: "Black Sunglass",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "",
-      rating: 4.5,
-      category: "Fashion",
-    },
-    {
-      _id: 16,
-      name: "Sport Shoes",
-      regularPrice: 2323,
-      discountPrice: 1223,
-      images: heroImage1,
-      brand: "Xiaomi",
-      rating: 4.5,
-      category: "Fashion",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/product")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
   return (
     <Box sx={{ backgroundColor: "#f6f9fc" }}>
       <Container>
@@ -188,7 +33,7 @@ const Product = () => {
           }}
         >
           <Box>
-            <Typography sx={{ fontSize: "20px", fontWeight: 600 }}>
+            <Typography sx={{ fontSize: "30px", fontWeight: 700 }}>
               Our Product
             </Typography>
           </Box>
@@ -241,7 +86,7 @@ const Product = () => {
 
         <Grid container spacing={3}>
           <Grid item container spacing={3}>
-            {PRODUCTS.map((product) => (
+            {products.map((product) => (
               <Grid item md={3} key={product._id}>
                 <ProductCard product={product} />
               </Grid>

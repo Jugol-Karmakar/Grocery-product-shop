@@ -108,7 +108,12 @@ const Hero = () => {
                           flexDirection: "column",
                         }}
                       >
-                        <Image width={500} src={item.image} alt="hero-image" />
+                        <Image
+                          width={500}
+                          height={400}
+                          src={item.image}
+                          alt="hero-image"
+                        />
                       </Box>
                     </Grid>
                   </Grid>

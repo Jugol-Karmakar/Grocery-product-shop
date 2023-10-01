@@ -22,8 +22,13 @@ const ProductCard = ({ product }) => {
         sx={{ borderRadius: "10px", position: "relative" }}
         onClick={handleClickOpen}
       >
-        <Box sx={{ display: "flex", justifyContent: "center", height: 283 }}>
-          <Image src={product.images} alt="product-image" width={290} />
+        <Box sx={{ display: "flex", justifyContent: "center", height: "100%" }}>
+          <Image
+            src={product.images}
+            alt="product-image"
+            width={290}
+            height={200}
+          />
         </Box>
 
         <CardContent
